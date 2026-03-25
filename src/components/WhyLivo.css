@@ -1,27 +1,27 @@
-/*  FULL SCREEN SECTION */
+/* FULL SCREEN SECTION */
 .why-livo {
-  min-height: 100vh;              /* full screen */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;        /* vertical center */
+  justify-content: center;
   align-items: center;
   padding: 60px 20px;
 }
 
-/* Space below heading */
+/* Heading */
 .why-livo h2 {
   margin-bottom: 50px;
   font-size: 2.5rem;
 }
 
-/*  Carousel container */
+/* Carousel */
 .carousel {
   width: 100%;
-  max-width: 1300px;
-  height: 420px;
+  max-width: 1400px;
+  height: auto;              /* IMPORTANT */
   display: flex;
   align-items: center;
-  justify-content: center; /*  IMPORTANT */
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -30,53 +30,96 @@
   display: flex;
   gap: 60px;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
-/* Card */
+/* CARD FIX */
 .card {
-  flex: 0 0 480px; /* MUST match CARD_WIDTH */
-  height: 320px;   /*  bigger height */
-  border-radius: 25px;
+  flex: 0 0 480px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: all 0.4s ease;
-  opacity: 0.5;
+  background: #000;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
-/*  Active card (center highlight) */
+/* Active */
 .card.active {
-  transform: scale(1.2);
+  transform: scale(1.1);
   opacity: 1;
   z-index: 3;
 }
 
-/* Video */
+/* EXPANDED */
+.card.expanded {
+  flex: 0 0 650px;
+  transform: scale(1.12);
+  z-index: 5;
+}
+.card:hover {
+  transform: scale(1.08);   /* zoom */
+  opacity: 1;
+  z-index: 4;
+}
+
+/* VIDEO FIX */
 .card video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 25px;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  background: #000;
+
+  transition: transform 0.4s ease;
 }
 
-/* Description */
+/* DESCRIPTION FIX */
 .video-desc {
-  margin-top: 12px;
-  padding: 10px;
+  padding: 15px;
   text-align: left;
+  background: #fff;
 }
 
-/*  Mobile responsive */
+/* Title */
+.video-desc h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* Text */
+.video-desc p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Button */
+.read-more {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  background: #1b5e20;
+}
+
+/* MOBILE FIX */
 @media (max-width: 768px) {
-  .carousel {
-    height: 300px;
-  }
-
   .card {
-    width: 90vw;
-    height: 220px;
+    flex: 0 0 90vw;
   }
 
-  .card.active {
-    transform: scale(1.05);
+  .card video {
+    height: 180px;
   }
 }
