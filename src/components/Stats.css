@@ -1,0 +1,100 @@
+.stats {
+  padding: 80px 40px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #2c5f5d;
+  margin-bottom: 20px;
+}
+
+/* Stats row */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.stats-row div h2 {
+  color: #2c5f5d;
+  font-size: 28px;
+}
+
+.stats-row div p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Heading */
+.main-heading {
+  margin-bottom: 40px;
+}
+
+/* Calculator */
+.calculator {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Left */
+.left {
+  text-align: left;
+  max-width: 300px;
+}
+
+.left input {
+  width: 100%;
+  margin: 15px 0;
+}
+
+/* Right */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Boxes */
+.box {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Savings */
+.green {
+  color: green;
+}
+
+/* Button */
+.start-btn {
+  padding: 12px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .stats-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .calculator {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left, .right {
+    max-width: 100%;
+  }
+}

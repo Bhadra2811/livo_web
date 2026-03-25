@@ -1,0 +1,109 @@
+.download-section {
+  padding: 80px 40px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card */
+.download-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* LEFT */
+.download-left {
+  max-width: 450px;
+  text-align: left;
+}
+
+.download-left h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.download-left span {
+  color: #2c5f5d;
+}
+
+.download-left p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.store-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.store-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Features list */
+.download-left ul {
+  list-style: none;
+  padding: 0;
+  color: #444;
+}
+
+.download-left li {
+  margin-bottom: 8px;
+}
+
+/* RIGHT */
+.download-right {
+  text-align: center;
+}
+
+.qr-title {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* QR Box */
+.qr-box {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.qr-box img {
+  width: 150px;
+  height: 150px;
+}
+
+@media (max-width: 768px) {
+  .download-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .download-left {
+    max-width: 100%;
+  }
+
+  .store-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .download-right {
+    margin-top: 20px;
+  }
+}

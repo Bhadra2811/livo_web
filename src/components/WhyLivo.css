@@ -1,0 +1,82 @@
+/*  FULL SCREEN SECTION */
+.why-livo {
+  min-height: 100vh;              /* full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* vertical center */
+  align-items: center;
+  padding: 60px 20px;
+}
+
+/* Space below heading */
+.why-livo h2 {
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+}
+
+/*  Carousel container */
+.carousel {
+  width: 100%;
+  max-width: 1300px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /*  IMPORTANT */
+  overflow: hidden;
+}
+
+/* Track */
+.track {
+  display: flex;
+  gap: 60px;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Card */
+.card {
+  flex: 0 0 480px; /* MUST match CARD_WIDTH */
+  height: 320px;   /*  bigger height */
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0.5;
+}
+
+/*  Active card (center highlight) */
+.card.active {
+  transform: scale(1.2);
+  opacity: 1;
+  z-index: 3;
+}
+
+/* Video */
+.card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+/* Description */
+.video-desc {
+  margin-top: 12px;
+  padding: 10px;
+  text-align: left;
+}
+
+/*  Mobile responsive */
+@media (max-width: 768px) {
+  .carousel {
+    height: 300px;
+  }
+
+  .card {
+    width: 90vw;
+    height: 220px;
+  }
+
+  .card.active {
+    transform: scale(1.05);
+  }
+}

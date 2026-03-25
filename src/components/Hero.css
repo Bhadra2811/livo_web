@@ -1,0 +1,140 @@
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🌾 HERO IMAGE */
+.hero-image {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+
+  background: url("/images/home-Section.png") no-repeat center bottom;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;   /*  center horizontally */
+  align-items: center;       /*  center vertically */
+}
+
+/* TEXT */
+.overlay {
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.overlay h2 {
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+/* 🟫 SOIL */
+/* .soil-section {
+  width: 100%;
+  height: 140px;
+
+  background: url("/images/soil.png") repeat-x;
+  background-size: contain;
+
+  display: flex;
+  justify-content: center;  /*  center buttons */
+  /*align-items: center;
+} */
+ .soil-section {
+  width: 100%;
+
+  background: url("/images/soil.png") repeat-x;
+  background-size: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 20px;   /*  gives space for buttons */
+}
+
+/* BUTTON CONTAINER */
+.bottom-download {
+  display: flex;
+  gap: 40px;   /* spacing between buttons */
+}
+
+/* BUTTON */
+.store-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+
+  cursor: pointer;
+}
+
+/* ICON */
+.store-btn .icon {
+  font-size: 22px;
+  color: white;
+}
+
+/* TEXT */
+.store-btn .text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.store-btn small {
+  font-size: 11px;
+}
+
+.store-btn strong {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    height: 60vh;
+  }
+
+  .overlay h1 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 1024px) {
+  .hero-image {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    height: 60vh;
+  }
+
+  .overlay h1 {
+    font-size: 36px;
+  }
+
+  .overlay h2 {
+    font-size: 18px;
+  }
+
+  .bottom-download {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .soil-section {
+    height: auto;
+    padding: 20px 0;
+  }
+}
