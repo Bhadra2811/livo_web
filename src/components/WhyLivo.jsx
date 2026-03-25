@@ -1,11 +1,11 @@
 
 import { useEffect, useState, useRef } from "react";
 import "./WhyLivo.css";
-import video1 from "../assets/videos/video1.mp4";
-import video2 from "../assets/videos/video2.mp4";
-import video3 from "../assets/videos/video3.mp4";
-import video4 from "../assets/videos/video4.mp4";
-import video5 from "../assets/videos/video5.mp4";
+// import video1 from "../assets/videos/video1.mp4";
+// import video2 from "../assets/videos/video2.mp4";
+// import video3 from "../assets/videos/video3.mp4";
+// import video4 from "../assets/videos/video4.mp4";
+// import video5 from "../assets/videos/video5.mp4";
 
 // const videoModules = import.meta.glob("../assets/videos/*.mp4", {
 //   eager: true,
@@ -21,27 +21,27 @@ import video5 from "../assets/videos/video5.mp4";
 
 const videos = [
   {
-    src: video1,
+    // src: video1,
     title: "Farmer Ravi",
     desc: "Ravi shares how digital tools helped him connect directly with buyers and increase profits.",
   },
   {
-    src: video2,
+    // src: video2,
     title: "Farmer Suresh",
     desc: "Suresh explains how comparing market prices helped him choose the best selling time.",
   },
   {
-    src: video3,
+    // src: video3,
     title: "Farmer Anita",
     desc: "Anita talks about reducing middlemen and getting fair value for her crops.",
   },
   {
-    src: video4,
+    // src: video4,
     title: "Farmer Raj",
     desc: "Raj shares his experience using smart farming techniques to boost yield.",
   },
   {
-    src: video5,
+    // src: video5,
     title: "Farmer Lakshmi",
     desc: "Lakshmi explains how she expanded her reach to new buyers across regions.",
   },
