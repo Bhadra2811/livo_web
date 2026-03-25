@@ -50,10 +50,18 @@
   }
 }
 
-body {
+/* body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+} */
+ body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+
+  background: var(--bg);     /*  FIX */
+  color: var(--text);        /*  FIX */
 }
 
 html {
