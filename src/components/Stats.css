@@ -1,100 +1,257 @@
-.stats {
-  padding: 80px 40px;
-  background: #f9f9f9;
-  text-align: center;
-}
+/* MAIN SECTION */
+.stats-section {
+  position: relative;
+  min-height: 100vh;   /*  full screen */
+  padding: 120px 40px 0;
 
-/* Subtitle */
-.subtitle {
-  color: #2c5f5d;
-  margin-bottom: 20px;
-}
-
-/* Stats row */
-.stats-row {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 40px;
-}
-
-.stats-row div h2 {
-  color: #2c5f5d;
-  font-size: 28px;
-}
-
-.stats-row div p {
-  font-size: 14px;
-  color: #666;
-}
-
-/* Heading */
-.main-heading {
-  margin-bottom: 40px;
-}
-
-/* Calculator */
-.calculator {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* Left */
-.left {
-  text-align: left;
-  max-width: 300px;
-}
-
-.left input {
-  width: 100%;
-  margin: 15px 0;
-}
-
-/* Right */
-.right {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: flex-start;
+
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+
+  overflow: hidden;
 }
 
-/* Boxes */
-.box {
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 10px;
+/* ========================= */
+/* 🌄 ROAD BACKGROUND */
+/* ========================= */
+.bg-road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 45%;   /*  reduce height */
+
+  background: url("/images/road.png") no-repeat center bottom;
+  background-size: cover;
+
+  z-index: 0;
+
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1.5s ease;
 }
 
-/* Savings */
-.green {
-  color: green;
+.bg-road.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Button */
-.start-btn {
-  padding: 12px;
-  background: black;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+/* ========================= */
+/*  HERO STYLE H1 ANIMATION */
+/* ========================= */
+
+/* .main-heading {
+  font-size: 48px;
+  color: #1f3d36;
+
+  opacity: 0;
+  transform: translateY(120px);
+  transition: all 1.2s ease;
+} */
+/* HEADING BASE */
+/* BASE */
+.main-heading {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);   /*  ONLY X CENTER */
+
+  top: 50%;                      /* center vertically */
+
+  font-size: 48px;
+  color: #1f3d36;
+  text-align: center;
+
+  opacity: 0;
+  transition: all 1.2s ease;
+
+  z-index: 10;
 }
+
+/* STEP 1 → CENTER */
+.step-1 {
+  opacity: 1;
+}
+
+/* STEP 2 → BLUR */
+.step-2 {
+  filter: blur(2px);
+}
+
+/* STEP 3+ → MOVE STRAIGHT UP (NO SIDE SHIFT) */
+.step-3,
+.step-4,
+.step-5 {
+  top: 80px;              /*  ONLY MOVE UP */
+  transform: translateX(-50%);  /* KEEP SAME CENTER LINE */
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* STEP 1 → ENTER FROM BOTTOM */
+/* .animate-step-1 {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+/* STEP 2 → MOVE UP + BLUR BACKGROUND FEEL */
+/* .animate-step-2 {
+  transform: translateY(-120px);
+  filter: blur(1.5px);
+} */
+
+/* STEP 3+ → FINAL POSITION */
+/* .animate-step-3,
+.animate-step-4,
+.animate-step-5 {
+  transform: translateY(-140px);
+  filter: blur(0);
+} */
+.stats-content {
+  margin-top: 140px;  /* space below heading */
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.stats-content.show {
+  opacity: 1;
+}
+/* ========================= */
+/* 🌳 TREES */
+/* ========================= */
+/* 🌳 TREES BASE */
+.tree {
+  position: absolute;
+  bottom: 0;              /*  anchor to road */
+  z-index: 1;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: all 1.5s ease;
+}
+
+/* LEFT TREE */
+.left-tree {
+  left: 0;
+  width: 550px;          /*  bigger */
+  transform: translateX(-80px);
+}
+
+/* RIGHT TREE */
+.right-tree {
+  right: 0;
+  width: 450px;          /*  same size */
+  transform: translateX(80px);
+}
+
+.tree.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ========================= */
+/* CONTENT */
+/* ========================= */
+.stats-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* HEADING */
+.main-heading {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #1f3d36;
+}
+
+.main-heading span {
+  color: #2e5e4e;
+}
+
+/* SUBTEXT */
+.sub-text {
+  color: #6c7a76;
+  margin-bottom: 60px;
+}
+
+/* ========================= */
+/* STATS */
+/* ========================= */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.stat-box h1 {
+  font-size: 48px;
+  color: #2e5e4e;
+}
+
+.stat-box p {
+  font-size: 14px;
+  color: #6c7a76;
+}
+
+/* ========================= */
+/* 👨‍🌾 FARMERS IMAGE */
+/* ========================= */
+.livo-img {
+  position: absolute;
+  bottom: 0;   /*  FIXED TO BOTTOM */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 1100px;
+
+  z-index: 2;
+
+  opacity: 0;
+  transition: all 1.2s ease;
+}
+
+.livo-img.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.livo-img img {
+  width: 100%;
+  display: block;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
 @media (max-width: 768px) {
+  .main-heading {
+    font-size: 28px;
+  }
+
   .stats-row {
-    flex-direction: column;
-    gap: 20px;
+    gap: 25px;
   }
 
-  .calculator {
-    flex-direction: column;
-    gap: 20px;
+  .stat-box h1 {
+    font-size: 32px;
   }
 
-  .left, .right {
-    max-width: 100%;
+  .tree {
+    width: 120px;
+  }
+
+  .bg-road {
+    height: 40%;
+  }
+
+  .livo-img {
+    max-width: 90%;
   }
 }
