@@ -294,11 +294,13 @@
 import { useEffect, useState, useRef } from "react";
 import "./WhyLivo.css";
 
-import video1 from "../assets/videos/video1.mp4";
-import video2 from "../assets/videos/video2.mp4";
-import video3 from "../assets/videos/video3.mp4";
-import video4 from "../assets/videos/video4.mp4";
-import video5 from "../assets/videos/video5.mp4";
+import video1 from "../assets/videos/IMG_0803.mov";
+import video2 from "../assets/videos/IMG_0805.mov";
+import video3 from "../assets/videos/IMG_0803.mov";
+import video4 from "../assets/videos/IMG_0805.mov";
+import video5 from "../assets/videos/IMG_0803.mov";
+
+
 
 const videos = [video1, video2, video3, video4, video5];
 
@@ -309,7 +311,7 @@ function WhyLivo() {
   const intervalRef = useRef(null);
   const videoRefs = useRef([]);
 
-  // 🔁 AUTO ROTATION
+  //  AUTO ROTATION
   useEffect(() => {
     if (!playing) return;
 
@@ -320,7 +322,7 @@ function WhyLivo() {
     return () => clearInterval(intervalRef.current);
   }, [playing]);
 
-  // 🎬 CONTROL VIDEO PLAY
+  //  CONTROL VIDEO PLAY
   useEffect(() => {
     videoRefs.current.forEach((vid, i) => {
       if (!vid) return;
@@ -334,12 +336,12 @@ function WhyLivo() {
     });
   }, [active, playing]);
 
-  // ▶️ ⏸️ PLAY PAUSE
+  // PLAY PAUSE
   const togglePlay = () => {
     setPlaying((prev) => !prev);
   };
 
-  // 🎯 CLICK VIDEO
+  // CLICK VIDEO
   const handleVideoClick = (index) => {
     setActive(index);
     setPlaying(false);
@@ -349,7 +351,7 @@ function WhyLivo() {
     if (vid) vid.play();
   };
 
-  // 🎯 CLICK DOT
+  // CLICK DOT
   const handleDotClick = (index) => {
     setActive(index);
     setPlaying(false);
@@ -369,7 +371,7 @@ function WhyLivo() {
           From Farmers To Agronomists And Home Gardeners Etc...
         </p>
 
-        {/* 🔥 CAROUSEL */}
+        {/* CAROUSEL */}
         <div className="carousel">
           <div
             className="track"
@@ -398,7 +400,7 @@ function WhyLivo() {
           </div>
         </div>
 
-        {/* 🔥 CONTROLS */}
+        {/* CONTROLS */}
         <div className="controls">
 
           {/* DOTS */}
