@@ -295,11 +295,11 @@ import { useEffect, useState, useRef } from "react";
 import "./WhyLivo.css";
 
 
-import video1 from "../assets/videos/IMG_0803 (1) (1).mov";
-import video2 from "../assets/videos/IMG_0805 (1) (1).mov";
-import video3 from "../assets/videos/IMG_0803 (1) (1).mov";
-import video4 from "../assets/videos/IMG_0805 (1) (1).mov";
-import video5 from "../assets/videos/IMG_0803 (1) (1).mov";
+import video1 from "../assets/videos/IMG_0803.mov";
+import video2 from "../assets/videos/IMG_0805.mov";
+import video3 from "../assets/videos/IMG_0803.mov";
+import video4 from "../assets/videos/IMG_0805.mov";
+import video5 from "../assets/videos/IMG_0803.mov";
 
 
 
