@@ -1,0 +1,147 @@
+.calc-wrapper {
+  min-height: 100vh;
+  padding: 100px 60px;
+  background: #f5f7f6;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* TITLE */
+.title {
+  font-size: 48px;
+  color: #1f3d36;
+}
+
+.subtitle {
+  margin-bottom: 60px;
+  color: #6c7a76;
+}
+
+/* MAIN LAYOUT */
+.calc-main {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* CARDS */
+.calc-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 420px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* INPUT GROUP */
+.input-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #1f3d36;
+}
+
+.input-group span {
+  color: #2e5e4e;
+}
+
+/* SLIDER */
+input[type="range"] {
+  width: 100%;
+}
+
+/* RIGHT SIDE */
+.chart-title {
+  text-align: left;
+  margin-bottom: 10px;
+  color: #1f3d36;
+}
+
+/* CHART */
+.chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 220px;
+  margin-top: 20px;
+}
+
+.bar-box {
+  text-align: center;
+}
+
+/* BAR STACK */
+.bar-stack {
+  width: 70px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* COST (BOTTOM) */
+.cost {
+  background: #c98f4a;
+  transition: 0.4s;
+}
+
+/* YIELD (TOP) */
+.yield {
+  background: #1f8f88;
+  transition: 0.4s;
+}
+
+/* VARIANTS */
+.small {
+  opacity: 0.8;
+}
+
+.big {
+  background: #9bd08f;
+}
+
+/* LABEL */
+.bar-box p {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6c7a76;
+}
+
+/* SAVINGS BOX */
+.savings {
+  margin-top: 25px;
+  background: #dff3df;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* NOTE */
+.note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6c7a76;
+  font-style: italic;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .calc-main {
+    flex-direction: column;
+    align-items: center;
+  }
+}

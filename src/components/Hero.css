@@ -1,9 +1,15 @@
-
-
 /* HERO BASE */
 .hero {
   width: 100%;
   font-family: "Poppins", sans-serif;
+}
+
+/* FONT (Biome for LIVO) */
+@font-face {
+  font-family: "BiomeWide";
+  src: url("../../public/font/biome-pro-wide-bold/biome-pro-wide-bold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* NAVBAR */
@@ -41,154 +47,152 @@
   border-radius: 10px;
   background: transparent;
   color: #2e5e4e;
+  text-decoration: none;
 }
 
 /* HERO IMAGE */
 .hero-image {
   position: relative;
   height: 90vh;
-
   background: url("/images/home-Section.png") no-repeat bottom center;
   background-size: cover;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   overflow: hidden;
 }
 
-/* CENTER CONTENT */
-.hero-center {
-  text-align: center;
-  z-index: 2;
-  transform: translateY(-60px);
-}
-
-/*  INTRO LIVO */
+/* INTRO LIVO */
 .intro-livo {
+  font-family: "BiomeWide", sans-serif;
+
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
 
-  font-size: 130px;
-  font-weight: 900;
+  font-size: 150px;
+  font-weight: 600;
+  letter-spacing: 6px;
   color: #2e5e4e;
 
   opacity: 0;
-  transform: translate(-50%, 120px);
+  will-change: transform;
+  transform: translate(-50%, 80px);
 }
+
 
 /* ENTER */
 .intro-livo.intro {
-  animation: livoEnter 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: livoEnter 1.2s ease forwards;
 }
 
 /* HOLD */
 .intro-livo.hold {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
 }
 
 /* EXIT */
 .intro-livo.exit {
-  animation: livoExit 1.4s ease-out forwards;  /*  slower + smoother */
+  animation: livoExit 1.2s ease forwards;
 }
 
-/* KEYFRAMES */
+/* ANIMATIONS */
 @keyframes livoEnter {
-  to {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 80px);
+  }
+  100% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
   }
 }
 
 @keyframes livoExit {
   0% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
   }
-
-  50% {
-    opacity: 0.5;   /*  gradual fade */
-  }
-
   100% {
     opacity: 0;
-    transform: translate(-50%, -120px); /* smoother lift */
+    transform: translate(-50%, -180px);
   }
 }
-/*  MAIN CONTENT */
+
+/* MAIN CONTENT */
 .main-content {
   opacity: 0;
-  transform: translateY(80px);
 }
 
 .main-content.show {
-  animation: contentUp 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.2s;
+  animation: contentFade 1.2s ease forwards;
 }
 
-@keyframes contentUp {
-  0% {
-    opacity: 0;
-    transform: translateY(120px);  /* 🔥 start deeper */
-  }
-
-  40% {
-    opacity: 0.3;  /* slow initial reveal */
-  }
-
-  70% {
-    opacity: 0.7;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes contentFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-/* TEXT */
+
+/*  H1 FIX (STRAIGHT LINE GUARANTEED) */
 .hero-center h1 {
-  font-size: 64px;
+  position: absolute;
+
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 70px;
   font-weight: 900;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  white-space: nowrap;     /*  forces single line */
+  line-height: 1.2;        /*  prevents clipping */
 
   color: #2e5e4e;
 }
 
+/* SUBTEXT (NO OVERLAP) */
 .hero-center p {
-  margin-top: 12px;
+  position: absolute;
+
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+
   font-size: 18px;
   color: #6f7f7a;
+
+  text-align: center;
 }
 
-/*  WORD FIX (NO JUMPING) */
+/* WORD ANIMATION (FIXED) */
 .changing-word {
   display: inline-block;
-  width: 170px;       /* prevents layout shift */
-  text-align: left;
+
+  min-width: 195px;
+  text-align: center;
 
   color: #4caf50;
-  transition: opacity 0.4s ease;
+
+  line-height: 1.2;
+  vertical-align: baseline;
+
+  animation: wordSlideUp 1.5s ease;
 }
 
-/* SPACING FIX */
-.profit-word {
-  margin-left: 40px;
+@keyframes wordSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* FARMER */
 .farmer-img {
   position: absolute;
   left: 0;
-  transform: translateX(-25%);   /* push slightly outside */
-
+  transform: translateX(-25%);
   bottom: -30px;
 
   height: 75%;
@@ -198,10 +202,9 @@
   z-index: 2;
 }
 
-/*  SOIL FULL WIDTH */
+/* SOIL */
 .soil-section {
   width: 100%;
-
   background: url("/images/soil.png") repeat-x;
   background-size: contain;
 
@@ -212,13 +215,12 @@
   padding: 40px 20px;
 }
 
-/* BUTTON CONTAINER */
+/* BUTTONS */
 .bottom-download {
   display: flex;
   gap: 40px;
 }
 
-/* BUTTON */
 .store-btn {
   display: flex;
   align-items: center;
@@ -232,14 +234,13 @@
   border-radius: 12px;
 
   cursor: pointer;
+  text-decoration: none;
 }
 
-/* ICON */
 .store-btn .icon {
   font-size: 24px;
 }
 
-/* TEXT */
 .store-btn .text {
   display: flex;
   flex-direction: column;
@@ -258,6 +259,11 @@
 @media (max-width: 768px) {
   .hero-center h1 {
     font-size: 30px;
+    top: 12%;
+  }
+
+  .hero-center p {
+    top: 20%;
   }
 
   .farmer-img {
@@ -267,5 +273,57 @@
   .bottom-download {
     flex-direction: column;
     gap: 10px;
+  }
+}
+.word-wrapper {
+  position: relative;
+  display: inline-block;
+  height: 1.0em;
+  width: 200px;
+  overflow: hidden;
+}
+
+.word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #4caf50;
+}
+
+/* current goes up */
+.word.current.show {
+  animation: moveUpOut 1.5s ease forwards;
+}
+
+/* next comes from bottom */
+.word.next.show {
+  animation: moveUpIn 1s ease forwards;
+}
+
+.word.hide {
+  opacity: 0;
+}
+
+@keyframes moveUpOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveUpIn {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

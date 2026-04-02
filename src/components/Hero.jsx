@@ -1,36 +1,164 @@
+// import "./Hero.css";
+// import { FaApple, FaGooglePlay } from "react-icons/fa";
+// import { useEffect, useState } from "react";
+
+// const words = ["FIELDS", "FARM", "AGRI", "CROP"];
+
+// function Hero() {
+//   const [index, setIndex] = useState(0);
+//   const [fade, setFade] = useState(true);
+
+//   //  animation stages
+//   const [stage, setStage] = useState("intro"); 
+//   // intro → hold → exit → showMain
+
+//   //  word rotation (smooth)
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setFade(false);
+
+//       setTimeout(() => {
+//         setIndex((prev) => (prev + 1) % words.length);
+//         setFade(true);
+//       }, 300);
+//     }, 2400);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   //  timeline control
+//   useEffect(() => {
+//     const t1 = setTimeout(() => setStage("hold"), 1200);   // LIVO entered
+//     const t2 = setTimeout(() => setStage("exit"), 2000);   // start exit
+//     const t3 = setTimeout(() => setStage("showMain"), 2800); // show H1
+
+//     return () => {
+//       clearTimeout(t1);
+//       clearTimeout(t2);
+//       clearTimeout(t3);
+//     };
+//   }, []);
+
+//   return (
+//     <div className="hero">
+
+//       {/* NAVBAR */}
+//       <nav className="navbar">
+//         <div className="logo">LIVO</div>
+
+//         <ul className="nav-links">
+//           <li className="active">Home</li>
+//           <li>Features</li>
+//           <li>Pricing</li>
+//           <li>Community</li>
+//         </ul>
+
+//         <button className="download-btn">Download App</button>
+//       </nav>
+
+//       {/* HERO */}
+//       <div className="hero-image">
+
+//         <div className="hero-center">
+
+//           {/*  BIG LIVO */}
+//           {stage !== "showMain" && (
+//             <div className={`intro-livo ${stage}`}>
+//               LIVO
+//             </div>
+//           )}
+
+//           {/*  MAIN CONTENT */}
+//           {stage === "showMain" && (
+//             <div className="main-content show">
+
+//               <h1>
+//                 YOUR{" "}
+//                 <span
+//                   className="changing-word"
+//                   style={{ opacity: fade ? 1 : 0 }}
+//                 >
+//                   {words[index]}
+//                 </span>{" "}
+//                 <span className="profit-word">COMPANION</span>
+//               </h1>
+
+//               <p>
+//                 “Your Agri Companion From First Seed To Final Harvest”
+//               </p>
+
+//             </div>
+//           )}
+
+//         </div>
+
+//         {/* FARMER */}
+//         <img src="/images/farmer.png" alt="farmer" className="farmer-img" />
+
+//       </div>
+
+//       {/* SOIL */}
+//       <div className="soil-section">
+
+//         <div className="bottom-download">
+//           <button className="store-btn">
+//             <FaApple className="icon" />
+//             <div className="text">
+//               <small>Download on the</small>
+//               <strong>App Store</strong>
+//             </div>
+//           </button>
+
+//           <button className="store-btn">
+//             <FaGooglePlay className="icon" />
+//             <div className="text">
+//               <small>GET IT ON</small>
+//               <strong>Play Store</strong>
+//             </div>
+//           </button>
+//         </div>
+//       </div>
+
+//     </div>
+//   );
+// }
+
+// export default Hero;
+
 import "./Hero.css";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
-const words = ["FIELDS", "FARM", "AGRI", "CROP"];
+import livoLogo from "../../public/images/Frame_2147210687-removebg-preview (1).png";
+const words = ["FIELD", "FARM", "AGRI", "CROP"];
 
 function Hero() {
-  const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+  
 
-  //  animation stages
-  const [stage, setStage] = useState("intro"); 
+  // animation stages
+  const [stage, setStage] = useState("intro");
   // intro → hold → exit → showMain
 
-  //  word rotation (smooth)
+  // word rotation
+  const [index, setIndex] = useState(0);
+const [fade, setFade] = useState(true);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setFade(false);
+
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+      setFade(true);
+    }, 1000);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, []);
+  // timeline control
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % words.length);
-        setFade(true);
-      }, 300);
-    }, 2400);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  //  timeline control
-  useEffect(() => {
-    const t1 = setTimeout(() => setStage("hold"), 1200);   // LIVO entered
-    const t2 = setTimeout(() => setStage("exit"), 2000);   // start exit
-    const t3 = setTimeout(() => setStage("showMain"), 2800); // show H1
+    const t1 = setTimeout(() => setStage("hold"), 1200);
+    const t2 = setTimeout(() => setStage("exit"), 2000);
+    const t3 = setTimeout(() => setStage("showMain"), 2800);
 
     return () => {
       clearTimeout(t1);
@@ -53,7 +181,14 @@ function Hero() {
           <li>Community</li>
         </ul>
 
-        <button className="download-btn">Download App</button>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.revin.livo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="download-btn"
+        >
+          Download App
+        </a>
       </nav>
 
       {/* HERO */}
@@ -61,30 +196,53 @@ function Hero() {
 
         <div className="hero-center">
 
-          {/*  BIG LIVO */}
+          {/* BIG LIVO */}
           {stage !== "showMain" && (
             <div className={`intro-livo ${stage}`}>
               LIVO
             </div>
           )}
 
-          {/*  MAIN CONTENT */}
+          {/* MAIN CONTENT */}
           {stage === "showMain" && (
             <div className="main-content show">
 
-              <h1>
-                MAKES YOUR{" "}
-                <span
-                  className="changing-word"
-                  style={{ opacity: fade ? 1 : 0 }}
-                >
+              {/* <h1>
+                YOUR{" "}
+                {/* <span className="word-wrapper">
+                  <span key={index} className="changing-word animate">
+                    {words[index]}
+                  </span>
+                </span> */}
+                {/* <span className="word-wrapper">
+                <span className={`word current ${fade ? "show" : "hide"}`}>
                   {words[index]}
-                </span>{" "}
-                <span className="profit-word">PROFITABLE</span>
-              </h1>
+                </span>
+
+                <span className={`word next ${fade ? "hide" : "show"}`}>
+                  {words[(index + 1) % words.length]}
+                </span>
+              </span>
+                <span className="profit-word">COMPANION</span>
+              </h1> */} 
+              <h1>
+                  YOUR{" "}
+                  
+                  <span className="word-wrapper">
+                    <span className={`word current ${fade ? "show" : "hide"}`}>
+                      {words[index]}
+                    </span>
+
+                    <span className={`word next ${fade ? "hide" : "show"}`}>
+                      {words[(index + 1) % words.length]}
+                    </span>
+                  </span>
+
+                  {" "}COMPANION
+                </h1>
 
               <p>
-                “Your Field’s Companion From First Seed To Final Harvest”
+                “Your Agri Companion From First Seed To Final Harvest”
               </p>
 
             </div>
@@ -93,30 +251,45 @@ function Hero() {
         </div>
 
         {/* FARMER */}
-        <img src="/images/farmer.png" alt="farmer" className="farmer-img" />
+        <img src="/images/farmer.png" alt="farmers" className="farmer-img" />
 
       </div>
 
-      {/* SOIL */}
+      {/* SOIL + DOWNLOAD */}
       <div className="soil-section">
 
         <div className="bottom-download">
-          <button className="store-btn">
+
+          {/* APP STORE (TEMP SAME LINK) */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.revin.livo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="store-btn"
+          >
             <FaApple className="icon" />
             <div className="text">
               <small>Download on the</small>
               <strong>App Store</strong>
             </div>
-          </button>
+          </a>
 
-          <button className="store-btn">
+          {/* PLAY STORE */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.revin.livo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="store-btn"
+          >
             <FaGooglePlay className="icon" />
             <div className="text">
               <small>GET IT ON</small>
               <strong>Play Store</strong>
             </div>
-          </button>
+          </a>
+
         </div>
+
       </div>
 
     </div>
@@ -124,8 +297,6 @@ function Hero() {
 }
 
 export default Hero;
-
-
 // import "./Hero.css";
 // import { FaApple, FaGooglePlay } from "react-icons/fa";
 // import { useEffect, useState } from "react";

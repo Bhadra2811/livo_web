@@ -7,6 +7,7 @@ import Gallery from "./components/Gallery";
 import Download from "./components/Download";
 import Footer from "./components/Footer";
 import Features from "./pages/Features";
+import Calculator from "./components/calculator";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 function App() {
@@ -28,6 +29,10 @@ function App() {
 
       <section id="stats">
         <Stats />
+      </section>
+
+      <section id="calculator">
+        <Calculator />
       </section>
 
       <section id="gallery">
