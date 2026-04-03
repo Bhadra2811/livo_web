@@ -58,7 +58,7 @@
 /* HERO IMAGE */
 .hero-image {
   position: relative;
-  height: 90vh;
+  height: 95vh;
   background: url("/images/home-Section.png") no-repeat bottom center;
   background-size: cover;
   overflow: hidden;
@@ -303,10 +303,10 @@
   left: 0;
 
   width: 100%;
-  height: 80px;
+  height: 80px;              /*  thinner band */
 
   background: url("/images/soil.png") repeat-x;
-  background-size: auto 100%;
+  background-size: auto 100%;    /*  stretch nicely */
 
   display: flex;
   justify-content: center;
@@ -395,7 +395,10 @@
   }
 
   .farmer-img {
-    height: 50%;
+    position: absolute;
+    height: 160px;
+    right:0;
+    bottom:0;
   }
 
   .bottom-download {

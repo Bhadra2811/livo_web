@@ -128,7 +128,7 @@
 import "./Hero.css";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import livoLogo from "../../public/images/livo.png";
+import livoLogo from "../../public/images/livo-logo.png";
 const words = ["FIELD", "FARM", "AGRI", "CROP"];
 
 

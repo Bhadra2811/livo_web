@@ -8,9 +8,7 @@ import Download from "./components/Download";
 import Footer from "./components/Footer";
 import Features from "./pages/Features";
 import Calculator from "./components/calculator";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
-import SimplePage from "./components/simple";
+import Sample from "./components/sample";
 function App() {
   return (
     <>
@@ -24,13 +22,9 @@ function App() {
         <Features />
       </section>
 
-      {/* <section id="simple"> */}
-        {/* <SimplePage />
+      <section id="sample">
+        <Sample />
       </section>
-
-      <section id="why">
-        <WhyLivo />
-      </section> */}
 
       <section id="why">
         <WhyLivo />
