@@ -40,9 +40,9 @@ function App() {
         <Stats />
       </section>
 
-      {/* <section id="calculator">
+      <section id="calculator">
         <Calculator />
-      </section> */}
+      </section>
 
       <section id="gallery">
         <Gallery />

@@ -131,6 +131,7 @@ import { useEffect, useState } from "react";
 import livoLogo from "../../public/images/livo.png";
 const words = ["FIELD", "FARM", "AGRI", "CROP"];
 
+
 function Hero() {
   
 
@@ -155,18 +156,29 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
   // timeline control
+  // useEffect(() => {
+  //   const t1 = setTimeout(() => setStage("hold"), 1200);
+  //   const t2 = setTimeout(() => setStage("exit"), 2000);
+  //   const t3 = setTimeout(() => setStage("showMain"), 2800);
+
+  //   return () => {
+  //     clearTimeout(t1);
+  //     clearTimeout(t2);
+  //     clearTimeout(t3);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const t1 = setTimeout(() => setStage("hold"), 1200);
-    const t2 = setTimeout(() => setStage("exit"), 2000);
-    const t3 = setTimeout(() => setStage("showMain"), 2800);
+  const t1 = setTimeout(() => setStage("hold"), 1200);
+  const t2 = setTimeout(() => setStage("exit"), 2000);
+  const t3 = setTimeout(() => setStage("showMain"), 2800);
 
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, []);
-
+  return () => {
+    clearTimeout(t1);
+    clearTimeout(t2);
+    clearTimeout(t3);
+  };
+}, []);
   return (
     <div className="hero">
 

@@ -1,304 +1,266 @@
-/* .why-livo {
-  min-height: 180vh;
-  width: 100%;
+/* ═══════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════ */
 
-  display: flex;
-  flex-direction: column;
-
-  justify-content: flex-start;
-  align-items: center;
-
-  padding: 120px 40px 60px;
-  box-sizing: border-box;
-
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-
-  background: #f5f7f6;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-  TITLE FIX (NO OVERLAP) 
-.why-livo h2 {
-  position: relative;  ❗ REMOVE sticky behavior 
-
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700;
-
-  margin-bottom: 40px;
-
-  z-index: 2;
-}
-
-.why-livo h2 span {
-  color: #2e5e4e;
-}
-
-  CONTENT NOW ALWAYS BELOW TITLE 
-.content {
-  width: 100%;
-  max-width: 1200px;
-
-  margin-top: 80px;  ❗ reset 
-}
-
-.subtitle {
-  margin-bottom: 30px;
-  color: #6c7a76;
-}
-
-  CAROUSEL SAFE BELOW TITLE 
-.carousel {
-  overflow: hidden;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.track {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.card.side {
-  flex: 0 0 180px;
-  height: 300px;
-
-  border-radius: 20px;
-  overflow: hidden;
-
-  opacity: 0.4;
-  filter: blur(4px);
-  transform: scale(0.9);
-
-  transition: all 0.5s ease;
-}
-
-.card.active {
-  flex: 0 0 600px;
-  height: 320px;
-
-  border-radius: 24px;
-  overflow: hidden;
-
-  opacity: 1;
-  filter: blur(0);
-  transform: scale(1);
-
-  z-index: 2;
-}
-
-.card video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: black;
-}
-
-.card.active video {
-  object-fit: contain;
-}
-
-.card.side video {
-  object-fit: cover;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.control-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.dots {
-  display: flex;
-  gap: 10px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #ccc;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
-
-.dot.active {
-  width: 30px;
-  background: #e0e0e0;
-  border-radius: 20px;
-}
-
-.progress {
-  height: 100%;
-  background: #2e5e4e;
-  animation: progressAnim 4s linear forwards;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes progressAnim {
   from { width: 0%; }
-  to { width: 100%; }
+  to   { width: 100%; }
 }
 
-.circle-btn {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: none;
-
-  background: #2e5e4e;
-  color: white;
-  font-size: 16px;
-
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.circle-btn:hover {
-  background: #1f4035;
-}
-
-@media (max-width: 768px) {
-  .why-livo {
-    padding: 100px 20px 40px;
-  }
-
-  .why-livo h2 {
-    font-size: clamp(28px, 6vw, 40px);
-  }
-
-  .track {
-    gap: 16px;
-  }
-
-  .card.active {
-    flex: 0 0 90%;
-  }
-
-  .card.side {
-    flex: 0 0 120px;
-  }
-} */
+/* ═══════════════════════════════════════════
+   SECTION WRAPPER
+═══════════════════════════════════════════ */
 
 .why-livo {
-  min-height: 100vh;              /*  FULL PAGE HEIGHT */
+  min-height: 100vh;
   width: 100%;
- 
+
   display: flex;
   flex-direction: column;
-  justify-content: center;        /*  CENTER VERTICALLY */
+  justify-content: center;
   align-items: center;
- 
+
   padding: 80px 40px;
   box-sizing: border-box;
- 
+
   text-align: center;
   font-family: "Poppins", sans-serif;
- 
-  background: #f5f7f6;            /* optional clean bg */
+  background: #f5f7f6;
 }
- 
-/* TITLE */
-.why-livo h2 {
-  font-size: 36px;
+
+/* ═══════════════════════════════════════════
+   TITLE  ── slides up from bottom, first
+═══════════════════════════════════════════ */
+
+.main-title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  margin: 0 0 12px;
+  line-height: 1.2;
+
+  opacity: 0;
+  animation: slideUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
- 
-.why-livo h2 span {
+
+.main-title span {
   color: #2e5e4e;
 }
- 
+
+/* ═══════════════════════════════════════════
+   SUBTITLE  ── fades up after title
+═══════════════════════════════════════════ */
+
 .subtitle {
-  margin-bottom: 50px;
+  font-size: 16px;
   color: #6c7a76;
+  margin: 0 0 48px;
+
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
 }
- 
-/* CAROUSEL */
+
+/* ═══════════════════════════════════════════
+   CAROUSEL  ── hidden until JS adds class
+═══════════════════════════════════════════ */
+
 .carousel {
   overflow: hidden;
   width: 100%;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease 0s, transform 0.7s ease 0s;
 }
- 
+
+.carousel.carousel-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   TRACK
+═══════════════════════════════════════════ */
+
 .track {
   display: flex;
   gap: 20px;
   align-items: center;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
- 
-/*  SIDE CARDS (VERTICAL RECTANGLE) */
+
+/* ═══════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════ */
+
+.card {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Side (inactive) cards */
 .card.side {
   flex: 0 0 180px;
   height: 300px;
- 
   border-radius: 20px;
   overflow: hidden;
- 
-  opacity: 0.4;
-  filter: blur(4px);
+  opacity: 0.45;
+  filter: blur(3px);
   transform: scale(0.9);
- 
-  transition: all 0.5s ease;
 }
- 
-/*  CENTER CARD */
+
+.card.side:hover {
+  opacity: 0.7;
+  filter: blur(1px);
+  transform: scale(0.93);
+}
+
+/* Active (center) card */
 .card.active {
   flex: 0 0 600px;
-  height: 320px;
- 
+  height: 340px;
   border-radius: 24px;
   overflow: hidden;
- 
   opacity: 1;
   filter: blur(0);
   transform: scale(1);
- 
   z-index: 2;
 }
- 
-/*  VIDEO FIX (MAIN CHANGE) */
+
+/* Video inside cards */
 .card video {
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* ✅ FULL VIDEO VISIBLE */
-  background: black;     /* ✅ fills empty space nicely */
+  display: block;
+  object-fit: cover;
+  background: #000;
 }
- 
-/* OPTIONAL: PREMIUM LOOK */
+
 .card.active video {
-  object-fit: contain;
+  object-fit: cover;
 }
- 
-.card.side video {
-  object-fit: cover;   /* keeps side cards stylish */
+
+/* ═══════════════════════════════════════════
+   HOVER PLAY ICON on side cards
+═══════════════════════════════════════════ */
+
+.hover-play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-size: 28px;
+
+  border-radius: 20px;
+  pointer-events: none;
+
+  animation: fadeInUp 0.2s ease forwards;
 }
- 
-/* CONTROLS */
+
+/* ═══════════════════════════════════════════
+   INFO LABEL OVERLAY on active card
+═══════════════════════════════════════════ */
+
+.card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 22px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.3) 70%,
+    transparent 100%
+  );
+
+  text-align: left;
+  color: white;
+  border-radius: 0 0 24px 24px;
+
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.card-label-role {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: 0.3px;
+}
+
+.card-label-desc {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 420px;
+}
+
+/* ═══════════════════════════════════════════
+   CONTROLS  ── hidden until JS adds class
+═══════════════════════════════════════════ */
+
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   margin-top: 30px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
 }
+
+.controls.controls-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .control-buttons {
   display: flex;
   gap: 12px;
 }
- 
-/* DOTS */
+
+/* ═══════════════════════════════════════════
+   DOTS
+═══════════════════════════════════════════ */
+
 .dots {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
- 
+
 .dot {
   width: 10px;
   height: 10px;
@@ -307,45 +269,92 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
 }
- 
+
 .dot.active {
   width: 30px;
-  background: #e0e0e0;
+  background: #d0d0d0;
   border-radius: 20px;
 }
- 
-/* PROGRESS BAR */
+
+.dot:hover:not(.active) {
+  background: #aaa;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR inside active dot
+═══════════════════════════════════════════ */
+
 .progress {
   height: 100%;
+  width: 0%;
   background: #2e5e4e;
   animation: progressAnim 4s linear forwards;
 }
- 
-@keyframes progressAnim {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
- 
-/* PLAY BUTTON */
+
+/* ═══════════════════════════════════════════
+   CIRCLE BUTTONS (play / mute)
+═══════════════════════════════════════════ */
+
 .circle-btn {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   border: none;
- 
+
   background: #2e5e4e;
   color: white;
-  font-size: 16px;
- 
+  font-size: 14px;
+
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.25s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
- 
+
 .circle-btn:hover {
   background: #1f4035;
+  transform: scale(1.06);
+}
+
+.circle-btn:active {
+  transform: scale(0.95);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .why-livo {
+    padding: 80px 20px 40px;
+  }
+
+  .main-title {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .card.active {
+    flex: 0 0 88vw;
+    height: 280px;
+  }
+
+  .card.side {
+    flex: 0 0 110px;
+    height: 240px;
+  }
+
+  .track {
+    gap: 14px;
+  }
+
+  .card-label-role {
+    font-size: 18px;
+  }
+
+  .card-label-desc {
+    font-size: 12px;
+  }
 }

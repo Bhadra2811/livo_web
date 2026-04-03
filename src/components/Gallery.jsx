@@ -1,61 +1,34 @@
-// import "./Gallery.css";
-
-// function Gallery() {
-//   return (
-//     <div className="gallery">
-//       <h2>Our Community Drives Us</h2>
-
-//       <div className="grid-gallery">
-
-//         <div className="item item1">
-//           <img src="/images/1.png" />
-//         </div>
-
-//         <div className="item item2">
-//           <img src="/images/2.png" />
-//         </div>
-
-//         <div className="item item3">
-//           <img src="/images/3.png" />
-//         </div>
-
-//         <div className="item item4">
-//           <img src="/images/4.png" />
-//         </div>
-//         <div className="item item5">
-//           <img src="/images/5.png" />
-//         </div>
-//         <div className="item item6">
-//           <img src="/images/6.png" />
-//         </div>
-
-//         {/* <div className="item item5 split">
-//         <img src="/images/5.png" />
-//         <img src="/images/6.png" />
-//         </div> */}
-
-
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Gallery;
 import "./Gallery.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Gallery() {
-  const [animate, setAnimate] = useState(false);
+  const sectionRef = useRef(null);
+  const [active, setActive] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimate(true);
-    }, 1200); // show stack first
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(true);
 
-    return () => clearTimeout(timer);
+          setTimeout(() => {
+            setShowTitle(true);
+          }, 900);
+        } else {
+          // 🔁 Reset when leaving screen (so animation repeats)
+          setActive(false);
+          setShowTitle(false);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
-  // ✅ GIVE YOUR IMAGE NAMES HERE
   const images = [
     "1.png",
     "2.png",
@@ -71,16 +44,21 @@ function Gallery() {
   ];
 
   return (
-    <div className="gallery">
-      <div className={`grid-gallery ${animate ? "show" : ""}`}>
+    <div className="gallery" ref={sectionRef}>
+      <div className="stage">
 
-        {/* CENTER HEADING */}
-        <h2 className="center-title">Our Community</h2>
+        {/* TITLE */}
+        <h2 className={`center-title ${showTitle ? "show" : ""}`}>
+          Our Community
+        </h2>
 
         {/* IMAGES */}
         {images.map((img, i) => (
-          <div className={`item item${i + 1}`} key={i}>
-            <img src={`/images/${img}`} alt={`gallery-${i}`} />
+          <div
+            key={i}
+            className={`item item${i + 1} ${active ? "scatter" : ""}`}
+          >
+            <img src={`/images/${img}`} alt="" />
           </div>
         ))}
 
