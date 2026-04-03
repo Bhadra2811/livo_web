@@ -1,49 +1,65 @@
-.why-livo {
-  min-height: 100vh;              /*  FULL PAGE HEIGHT */
+/* .why-livo {
+  min-height: 180vh;
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;        /*  CENTER VERTICALLY */
+
+  justify-content: flex-start;
   align-items: center;
 
-  padding: 80px 40px;
+  padding: 120px 40px 60px;
   box-sizing: border-box;
 
   text-align: center;
   font-family: "Poppins", sans-serif;
 
-  background: #f5f7f6;            /* optional clean bg */
+  background: #f5f7f6;
 }
 
-/* TITLE */
+  TITLE FIX (NO OVERLAP) 
 .why-livo h2 {
-  font-size: 36px;
+  position: relative;  ❗ REMOVE sticky behavior 
+
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+
+  margin-bottom: 40px;
+
+  z-index: 2;
 }
 
 .why-livo h2 span {
   color: #2e5e4e;
 }
 
+  CONTENT NOW ALWAYS BELOW TITLE 
+.content {
+  width: 100%;
+  max-width: 1200px;
+
+  margin-top: 80px;  ❗ reset 
+}
+
 .subtitle {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: #6c7a76;
 }
 
-/* CAROUSEL */
+  CAROUSEL SAFE BELOW TITLE 
 .carousel {
   overflow: hidden;
   width: 100%;
+  margin-top: 20px;
 }
 
 .track {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/*  SIDE CARDS (VERTICAL RECTANGLE) */
 .card.side {
   flex: 0 0 180px;
   height: 300px;
@@ -58,7 +74,6 @@
   transition: all 0.5s ease;
 }
 
-/*  CENTER CARD */
 .card.active {
   flex: 0 0 600px;
   height: 320px;
@@ -73,24 +88,21 @@
   z-index: 2;
 }
 
-/*  VIDEO FIX (MAIN CHANGE) */
 .card video {
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* ✅ FULL VIDEO VISIBLE */
-  background: black;     /* ✅ fills empty space nicely */
+  object-fit: contain;
+  background: black;
 }
 
-/* OPTIONAL: PREMIUM LOOK */
 .card.active video {
   object-fit: contain;
 }
 
 .card.side video {
-  object-fit: cover;   /* keeps side cards stylish */
+  object-fit: cover;
 }
 
-/* CONTROLS */
 .controls {
   display: flex;
   justify-content: center;
@@ -99,7 +111,11 @@
   margin-top: 30px;
 }
 
-/* DOTS */
+.control-buttons {
+  display: flex;
+  gap: 12px;
+}
+
 .dots {
   display: flex;
   gap: 10px;
@@ -121,7 +137,6 @@
   border-radius: 20px;
 }
 
-/* PROGRESS BAR */
 .progress {
   height: 100%;
   background: #2e5e4e;
@@ -129,15 +144,10 @@
 }
 
 @keyframes progressAnim {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
+  from { width: 0%; }
+  to { width: 100%; }
 }
 
-/* PLAY BUTTON */
 .circle-btn {
   width: 45px;
   height: 45px;
@@ -152,6 +162,190 @@
   transition: 0.3s;
 }
 
+.circle-btn:hover {
+  background: #1f4035;
+}
+
+@media (max-width: 768px) {
+  .why-livo {
+    padding: 100px 20px 40px;
+  }
+
+  .why-livo h2 {
+    font-size: clamp(28px, 6vw, 40px);
+  }
+
+  .track {
+    gap: 16px;
+  }
+
+  .card.active {
+    flex: 0 0 90%;
+  }
+
+  .card.side {
+    flex: 0 0 120px;
+  }
+} */
+
+.why-livo {
+  min-height: 100vh;              /*  FULL PAGE HEIGHT */
+  width: 100%;
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /*  CENTER VERTICALLY */
+  align-items: center;
+ 
+  padding: 80px 40px;
+  box-sizing: border-box;
+ 
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+ 
+  background: #f5f7f6;            /* optional clean bg */
+}
+ 
+/* TITLE */
+.why-livo h2 {
+  font-size: 36px;
+}
+ 
+.why-livo h2 span {
+  color: #2e5e4e;
+}
+ 
+.subtitle {
+  margin-bottom: 50px;
+  color: #6c7a76;
+}
+ 
+/* CAROUSEL */
+.carousel {
+  overflow: hidden;
+  width: 100%;
+}
+ 
+.track {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+ 
+/*  SIDE CARDS (VERTICAL RECTANGLE) */
+.card.side {
+  flex: 0 0 180px;
+  height: 300px;
+ 
+  border-radius: 20px;
+  overflow: hidden;
+ 
+  opacity: 0.4;
+  filter: blur(4px);
+  transform: scale(0.9);
+ 
+  transition: all 0.5s ease;
+}
+ 
+/*  CENTER CARD */
+.card.active {
+  flex: 0 0 600px;
+  height: 320px;
+ 
+  border-radius: 24px;
+  overflow: hidden;
+ 
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+ 
+  z-index: 2;
+}
+ 
+/*  VIDEO FIX (MAIN CHANGE) */
+.card video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ✅ FULL VIDEO VISIBLE */
+  background: black;     /* ✅ fills empty space nicely */
+}
+ 
+/* OPTIONAL: PREMIUM LOOK */
+.card.active video {
+  object-fit: contain;
+}
+ 
+.card.side video {
+  object-fit: cover;   /* keeps side cards stylish */
+}
+ 
+/* CONTROLS */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+.control-buttons {
+  display: flex;
+  gap: 12px;
+}
+ 
+/* DOTS */
+.dots {
+  display: flex;
+  gap: 10px;
+}
+ 
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+ 
+.dot.active {
+  width: 30px;
+  background: #e0e0e0;
+  border-radius: 20px;
+}
+ 
+/* PROGRESS BAR */
+.progress {
+  height: 100%;
+  background: #2e5e4e;
+  animation: progressAnim 4s linear forwards;
+}
+ 
+@keyframes progressAnim {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+ 
+/* PLAY BUTTON */
+.circle-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+ 
+  background: #2e5e4e;
+  color: white;
+  font-size: 16px;
+ 
+  cursor: pointer;
+  transition: 0.3s;
+}
+ 
 .circle-btn:hover {
   background: #1f4035;
 }

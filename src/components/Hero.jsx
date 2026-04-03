@@ -128,7 +128,7 @@
 import "./Hero.css";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import livoLogo from "../../public/images/Frame_2147210687-removebg-preview (1).png";
+import livoLogo from "../../public/images/livo.png";
 const words = ["FIELD", "FARM", "AGRI", "CROP"];
 
 function Hero() {
@@ -172,7 +172,9 @@ useEffect(() => {
 
       {/* NAVBAR */}
       <nav className="navbar">
-        <div className="logo">LIVO</div>
+        <div className="logo">
+          <img src="../../public/images/livo-logo.png" alt="LIVO Logo" />
+        </div>
 
         <ul className="nav-links">
           <li className="active">Home</li>
@@ -198,8 +200,11 @@ useEffect(() => {
 
           {/* BIG LIVO */}
           {stage !== "showMain" && (
+            // <div className={`intro-livo ${stage}`}>
+            //   LIVO
+            // </div>
             <div className={`intro-livo ${stage}`}>
-              LIVO
+              <img src={livoLogo} alt="livo" className="livo-img-intro" />
             </div>
           )}
 

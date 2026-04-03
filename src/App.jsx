@@ -10,6 +10,7 @@ import Features from "./pages/Features";
 import Calculator from "./components/calculator";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import SimplePage from "./components/simple";
 function App() {
   return (
     <>
@@ -23,6 +24,14 @@ function App() {
         <Features />
       </section>
 
+      {/* <section id="simple"> */}
+        {/* <SimplePage />
+      </section>
+
+      <section id="why">
+        <WhyLivo />
+      </section> */}
+
       <section id="why">
         <WhyLivo />
       </section>
@@ -31,9 +40,9 @@ function App() {
         <Stats />
       </section>
 
-      <section id="calculator">
+      {/* <section id="calculator">
         <Calculator />
-      </section>
+      </section> */}
 
       <section id="gallery">
         <Gallery />

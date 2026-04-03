@@ -1,299 +1,208 @@
 
 // import { useEffect, useState, useRef } from "react";
 // import "./WhyLivo.css";
-// import video1 from "../assets/videos/video1.mp4";
-// import video2 from "../assets/videos/video2.mp4";
-// import video3 from "../assets/videos/video3.mp4";
-// import video4 from "../assets/videos/video4.mp4";
-// import video5 from "../assets/videos/video5.mp4";
 
-// // const videoModules = import.meta.glob("../assets/videos/*.mp4", {
-// //   eager: true,
-// // });
+// import video1 from "../assets/videos/IMG_0803 (1) (1).mov";
+// import video2 from "../assets/videos/IMG_0805 (1) (1).mov";
+// import video3 from "../assets/videos/IMG_0803 (1) (1).mov";
+// import video4 from "../assets/videos/IMG_0805 (1) (1).mov";
+// import video5 from "../assets/videos/IMG_0803 (1) (1).mov";
 
-// // const videos = Object.entries(videoModules).map(([path, mod], index) => ({
-// //   src: mod.default,
-// //   title: `Farmer ${index + 1}`,
-// //   desc: `Story about ${path.split("/").pop().replace(".mp4", "")}`,
-// // }));
-
-// // const videoList = Object.values(videoModules);
-
-// const videos = [
-//   {
-//     src: video1,
-//     title: "Farmer Ravi",
-//     desc: "Ravi shares how digital tools helped him connect directly with buyers and increase profits.",
-//   },
-//   {
-//     src: video2,
-//     title: "Farmer Suresh",
-//     desc: "Suresh explains how comparing market prices helped him choose the best selling time.",
-//   },
-//   {
-//     src: video3,
-//     title: "Farmer Anita",
-//     desc: "Anita talks about reducing middlemen and getting fair value for her crops.",
-//   },
-//   {
-//     src: video4,
-//     title: "Farmer Raj",
-//     desc: "Raj shares his experience using smart farming techniques to boost yield.",
-//   },
-//   {
-//     src: video5,
-//     title: "Farmer Lakshmi",
-//     desc: "Lakshmi explains how she expanded her reach to new buyers across regions.",
-//   },
- 
-// ];
+// const videos = [video1, video2, video3, video4, video5];
 
 // function WhyLivo() {
 //   const [active, setActive] = useState(0);
-//   const [auto, setAuto] = useState(true);
-//   const [selected, setSelected] = useState(null);
+//   const [playing, setPlaying] = useState(true);
+//   const [isManualPlay, setIsManualPlay] = useState(false);
+//   const [isMuted, setIsMuted] = useState(true);
+
+//   const [progress, setProgress] = useState(0);
+
 //   const intervalRef = useRef(null);
+//   const videoRefs = useRef([]);
+//   const sectionRef = useRef(null);
 
-//   const CARD_WIDTH = selected !== null ? 650 : 480; //  dynamic width
-//   const GAP = 60;
-//   const OFFSET = CARD_WIDTH + GAP;
-
+//   /* 🔥 SCROLL ANIMATION */
 //   useEffect(() => {
-//     if (intervalRef.current) {
-//       clearInterval(intervalRef.current);
-//     }
+//     const handleScroll = () => {
+//       if (!sectionRef.current) return;
 
-//     if (auto) {
-//       intervalRef.current = setInterval(() => {
-//         setActive((prev) => (prev + 1) % videos.length);
-//       }, 3000);
-//     }
+//       const rect = sectionRef.current.getBoundingClientRect();
+
+//       const scrolled = Math.min(Math.max(-rect.top, 0), rect.height);
+//       const p = scrolled / rect.height;
+
+//       setProgress(p);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   /* AUTO SLIDE */
+//   useEffect(() => {
+//     if (!playing || isManualPlay) return;
+
+//     intervalRef.current = setInterval(() => {
+//       setActive((prev) => (prev + 1) % videos.length);
+//     }, 3000);
 
 //     return () => clearInterval(intervalRef.current);
-//   }, [auto]);
+//   }, [playing, isManualPlay]);
+
+//   /* VIDEO CONTROL */
+//   useEffect(() => {
+//     videoRefs.current.forEach((vid, i) => {
+//       if (!vid) return;
+
+//       if (i === active) {
+//         vid.currentTime = 0;
+//         vid.play();
+//       } else {
+//         vid.pause();
+//       }
+//     });
+//   }, [active]);
+
+//   /* VIDEO CLICK */
+//   const handleVideoClick = (index) => {
+//     clearInterval(intervalRef.current);
+//     setActive(index);
+//     setIsManualPlay(true);
+//     setPlaying(true);
+
+//     const vid = videoRefs.current[index];
+//     if (vid) {
+//       vid.currentTime = 0;
+//       vid.muted = isMuted;
+//       vid.play();
+//     }
+//   };
+
+//   /* VIDEO END */
+//   const handleVideoEnd = () => {
+//     if (!isManualPlay) return;
+
+//     setIsManualPlay(false);
+
+//     setTimeout(() => {
+//       setActive((prev) => (prev + 1) % videos.length);
+//     }, 300);
+//   };
+
+//   /* CONTROLS */
+//   const togglePlay = () => setPlaying((prev) => !prev);
+
+//   const toggleMute = () => {
+//     setIsMuted((prev) => !prev);
+//     videoRefs.current.forEach((vid) => {
+//       if (vid) vid.muted = !isMuted;
+//     });
+//   };
+
+//   const handleDotClick = (index) => {
+//     clearInterval(intervalRef.current);
+//     setActive(index);
+//     setPlaying(false);
+//   };
+
+//   /* 🔥 HEADING CONTROL (SLOW + CONTROLLED) */
+//   const move = Math.min(progress * 0.8, 1);
 
 //   return (
-//     <div className="why-livo">
+//     <div ref={sectionRef} className="why-livo">
 
-//       <h2>Built For Every Grower</h2>
+//       {/* 🔥 TITLE */}
+//       <h2
+//         className="main-title"
+//         style={{
+//           position: "sticky",
+//           top: `${50 - move * 35}%`,
+//           transform: `translateY(-50%) scale(${1.3 - move * 0.5})`
+//         }}
+//       >
+//         Build for <span>Every Grower</span>
+//       </h2>
 
-//       <div className="carousel">
-//         <div
-//           className="track"
-//           style={{
-//             transform: `translateX(calc(50% - ${CARD_WIDTH / 2}px - ${active * OFFSET}px))`
-//           }}
-//         >
+//       {/* 🔥 CONTENT */}
+//       <div
+//         className="content"
+//         style={{
+//           opacity: progress > 0.25 ? (progress - 0.25) * 1.5 : 0,
+//           transform: `translateY(${60 - progress * 60}px)`
+//         }}
+//       >
 
-//           {videos.map((video, index) => (
-//             <div
-//               key={index}
-//               className={`card
-//                 ${index === active ? "active" : ""} 
-//                 ${selected === index ? "expanded" : ""}
-//               `}
+//         <p className="subtitle">
+//           From Farmers To Agronomists And Home Gardeners Etc...
+//         </p>
 
-//               onClick={() => {
-//                 if (intervalRef.current) {
-//                   clearInterval(intervalRef.current);
-//                 }
+//         {/* CAROUSEL */}
+//         <div className="carousel">
+//           <div
+//             className="track"
+//             style={{
+//               transform: `translateX(calc(50% - 350px - ${active * 260}px))`
+//             }}
+//           >
+//             {videos.map((video, index) => {
+//               const isActive = index === active;
 
-//                 if (selected === index) {
-//                   setSelected(null);
-//                   setAuto(true);
-//                 } else {
-//                   setSelected(index);
-//                   setActive(index); //  keep centered
-//                   setAuto(false);
-//                 }
-//               }}
-
-//               onMouseEnter={() => {
-//                 if (selected === null) {
-//                   if (intervalRef.current) clearInterval(intervalRef.current);
-//                   setActive(index);
-//                   setAuto(false);
-//                 }
-//               }}
-
-//               onMouseLeave={() => {
-//                 if (selected === null) {
-//                   setAuto(true);
-//                 }
-//               }}
-//             >
-//               <video
-//                 src={video.src}
-//                 muted
-//                 loop
-//                 autoPlay={index === active}
-//                 controls={selected === index}
-//               />
-
-//               {/*  SHOW DESCRIPTION ONLY WHEN SELECTED */}
-//               {/* {selected === index && (
-//                 <div className="video-desc">
-//                   <h3>{video.title}</h3>
-//                   <p>{video.desc}</p>
+//               return (
+//                 <div
+//                   key={index}
+//                   className={`card ${isActive ? "active" : "side"}`}
+//                   onClick={() => handleVideoClick(index)}
+//                 >
+//                   <video
+//                     ref={(el) => (videoRefs.current[index] = el)}
+//                     src={video}
+//                     muted={isMuted}
+//                     onEnded={handleVideoEnd}
+//                     loop={!isManualPlay}
+//                   />
 //                 </div>
-//               )} */}
-//               {/*  ALWAYS SHOW DESCRIPTION */}
-//                 <div className="video-desc">
-//                   <h3>{video.title}</h3>
-//                   <p>{video.desc}</p>
-//                   <button className="read-more">Read More</button>
-//                 </div>
-//             </div>
-//           ))}
+//               );
+//             })}
+//           </div>
+//         </div>
+
+//         {/* CONTROLS */}
+//         <div className="controls">
+
+//           <div className="dots">
+//             {videos.map((_, i) => (
+//               <div
+//                 key={i}
+//                 className={`dot ${i === active ? "active" : ""}`}
+//                 onClick={() => handleDotClick(i)}
+//               >
+//                 {i === active && playing && <div className="progress" />}
+//               </div>
+//             ))}
+//           </div>
+
+//           <div className="control-buttons">
+//             <button onClick={togglePlay} className="circle-btn">
+//               {playing ? "❚❚" : "▶"}
+//             </button>
+
+//             <button onClick={toggleMute} className="circle-btn">
+//               {isMuted ? "🔇" : "🔊"}
+//             </button>
+//           </div>
 
 //         </div>
-//       </div>
 
+//       </div>
 //     </div>
 //   );
 // }
 
 // export default WhyLivo;
-
-// // export default WhyLivo;
-// // import { useEffect, useState } from "react";
-// // import "./WhyLivo.css";
-
-// // const videos = [
-// //   {
-// //     id: "1WhAmRAFFJ0AJ-AI9jV1XBrcD0kC9p-k5",
-// //     title: "Farmer 1",
-// //     desc: "Real farmer success story",
-// //   },
-// //   {
-// //     id: "1j77HuRF46jKyGqZQRK2iKHxqRVWWFF7g",
-// //     title: "Farmer 2",
-// //     desc: "Better market access journey",
-// //   },
-// //   {
-// //     id: "1wwGuouZ5lzZvANcXE3QzQjyUDDAXZVHj",
-// //     title: "Farmer 3",
-// //     desc: "Smart farming transformation",
-// //   },
-// //   {
-// //     id: "1gxtCuxsFMYsuAPbVnqrRc5ijIix363Mz",
-// //     title: "Farmer 4",
-// //     desc: "From local to digital market",
-// //   },
-// //   {
-// //     id: "1KS1l9YhdOJNYs9mTlz3I8GCn5YVdDEnb",
-// //     title: "Farmer 5",
-// //     desc: "Increasing profits with Livo",
-// //   },
-// //   {
-// //     id: "1xB7qdslQWKA-obR7Ja9WTyLAZJffAPh0",
-// //     title: "Farmer 6",
-// //     desc: "Connecting farmers nationwide",
-// //   }
-// // ];
-
-// // function WhyLivo() {
-// //   const [active, setActive] = useState(0);
-// //   const [auto, setAuto] = useState(true);
-// //   const [selectedVideo, setSelectedVideo] = useState(null);
-
-// //   const CARD_WIDTH = 480;
-// //   const GAP = 60;
-// //   const OFFSET = CARD_WIDTH + GAP;
-
-// //   useEffect(() => {
-// //     if (!auto) return;
-
-// //     const interval = setInterval(() => {
-// //       setActive((prev) => (prev + 1) % videos.length);
-// //     }, 3000);
-
-// //     return () => clearInterval(interval);
-// //   }, [auto]);
-
-// //   return (
-// //     <div className="why-livo">
-
-// //       <h2>Built For Every Grower</h2>
-
-// //       <div className="carousel">
-// //         <div
-// //           className="track"
-// //           style={{
-// //             transform: `translateX(calc(50% - ${active * OFFSET}px))`
-// //           }}
-// //         >
-
-// //           {videos.map((video, index) => (
-// //             <div
-// //               key={index}
-// //               className={`card ${index === active ? "active" : ""}`}
-// //               onClick={() => {
-// //                 setActive(index);
-// //                 setAuto(false);
-// //                 setSelectedVideo(video);
-// //               }}
-// //             >
-
-// //               {/*  CLICK FIX */}
-// //               <div className="click-overlay"></div>
-
-// //               <iframe
-// //                 src={`https://drive.google.com/file/d/${video.id}/preview`}
-// //                 width="100%"
-// //                 height="100%"
-// //                 allow="autoplay"
-// //                 allowFullScreen
-// //                 style={{
-// //                   borderRadius: "20px",
-// //                   border: "none",
-// //                   pointerEvents: "none"
-// //                 }}
-// //               />
-
-// //               {index === active && (
-// //                 <div className="video-desc">
-// //                   <h3>{video.title}</h3>
-// //                   <p>{video.desc}</p>
-// //                 </div>
-// //               )}
-
-// //             </div>
-// //           ))}
-
-// //         </div>
-// //       </div>
-
-// //       {/*  MODAL */}
-// //       {selectedVideo && (
-// //         <div className="video-modal" onClick={() => setSelectedVideo(null)}>
-// //           <div
-// //             className="video-container"
-// //             onClick={(e) => e.stopPropagation()}
-// //           >
-// //             <iframe
-// //               src={`https://drive.google.com/file/d/${selectedVideo.id}/preview?autoplay=1`}
-// //               width="100%"
-// //               height="500px"
-// //               allow="autoplay"
-// //               allowFullScreen
-// //               style={{ borderRadius: "12px", border: "none" }}
-// //             />
-
-// //             <h3>{selectedVideo.title}</h3>
-// //             <p>{selectedVideo.desc}</p>
-// //           </div>
-// //         </div>
-// //       )}
-
-// //     </div>
-// //   );
-// // }
-
-// // export default WhyLivo;
+// completly perfectly working one 
 import { useEffect, useState, useRef } from "react";
 import "./WhyLivo.css";
-
 
 import video1 from "../assets/videos/IMG_0803 (1) (1).mov";
 import video2 from "../assets/videos/IMG_0805 (1) (1).mov";
@@ -301,62 +210,100 @@ import video3 from "../assets/videos/IMG_0803 (1) (1).mov";
 import video4 from "../assets/videos/IMG_0805 (1) (1).mov";
 import video5 from "../assets/videos/IMG_0803 (1) (1).mov";
 
-
-
 const videos = [video1, video2, video3, video4, video5];
 
 function WhyLivo() {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(true);
+  // const [stage, setStage] = useState("center");
+  const [isManualPlay, setIsManualPlay] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const intervalRef = useRef(null);
   const videoRefs = useRef([]);
 
-  //  AUTO ROTATION
+  /* TITLE ANIMATION */
+  // useEffect(() => {
+  //   const t1 = setTimeout(() => setStage("top"), 1200);
+  //   const t2 = setTimeout(() => setStage("showContent"), 2000);
+
+  //   return () => {
+  //     clearTimeout(t1);
+  //     clearTimeout(t2);
+  //   };
+  // }, []);
+
+  /* AUTO SLIDE */
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || isManualPlay) return;
 
     intervalRef.current = setInterval(() => {
       setActive((prev) => (prev + 1) % videos.length);
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(intervalRef.current);
-  }, [playing]);
+  }, [playing, isManualPlay]);
 
-  //  CONTROL VIDEO PLAY
+  /* VIDEO CONTROL */
   useEffect(() => {
     videoRefs.current.forEach((vid, i) => {
       if (!vid) return;
 
-      if (i === active && playing) {
+      if (i === active) {
         vid.currentTime = 0;
         vid.play();
       } else {
         vid.pause();
       }
     });
-  }, [active, playing]);
+  }, [active]);
 
-  // PLAY PAUSE
+  /* CLICK VIDEO */
+  const handleVideoClick = (index) => {
+    clearInterval(intervalRef.current);
+
+    setActive(index);
+    setIsManualPlay(true);
+    setPlaying(true);
+
+    const vid = videoRefs.current[index];
+    if (vid) {
+      vid.currentTime = 0;
+      vid.muted = isMuted;
+      vid.play();
+    }
+  };
+
+  /* VIDEO END */
+  const handleVideoEnd = () => {
+    if (!isManualPlay) return;
+
+    setIsManualPlay(false);
+
+    setTimeout(() => {
+      setActive((prev) => (prev + 1) % videos.length);
+    }, 300);
+  };
+
+  /* PLAY/PAUSE */
   const togglePlay = () => {
     setPlaying((prev) => !prev);
   };
 
-  // CLICK VIDEO
-  const handleVideoClick = (index) => {
-    setActive(index);
-    setPlaying(false);
-    clearInterval(intervalRef.current);
+  /* MUTE */
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev);
 
-    const vid = videoRefs.current[index];
-    if (vid) vid.play();
+    videoRefs.current.forEach((vid) => {
+      if (vid) vid.muted = !isMuted;
+    });
   };
 
-  // CLICK DOT
+  /* DOT CLICK */
   const handleDotClick = (index) => {
+    clearInterval(intervalRef.current);
     setActive(index);
     setPlaying(false);
-    clearInterval(intervalRef.current);
   };
 
   return (
@@ -364,63 +311,73 @@ function WhyLivo() {
       <div className="container">
 
         {/* TITLE */}
-        <h2>
+        <h2 className="main-title">
           Build for <span>Every Grower</span>
         </h2>
 
-        <p className="subtitle">
-          From Farmers To Agronomists And Home Gardeners Etc...
-        </p>
+        {/* CONTENT */}
+        <div className="content">
 
-        {/* CAROUSEL */}
-        <div className="carousel">
-          <div
-            className="track"
-            style={{
-              transform: `translateX(calc(50% - 350px - ${active * 260}px))`
-            }}
-          >
-            {videos.map((video, index) => {
-              const isActive = index === active;
+          <p className="subtitle">
+            From Farmers To Agronomists And Home Gardeners Etc...
+          </p>
 
-              return (
+          {/* CAROUSEL */}
+          <div className="carousel">
+            <div
+              className="track"
+              style={{
+                transform: `translateX(calc(50% - 350px - ${active * 260}px))`
+              }}
+            >
+              {videos.map((video, index) => {
+                const isActive = index === active;
+
+                return (
+                  <div
+                    key={index}
+                    className={`card ${isActive ? "active" : "side"}`}
+                    onClick={() => handleVideoClick(index)}
+                  >
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      src={video}
+                      muted={isMuted}
+                      onEnded={handleVideoEnd}
+                      loop={!isManualPlay}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* CONTROLS */}
+          <div className="controls">
+
+            <div className="dots">
+              {videos.map((_, i) => (
                 <div
-                  key={index}
-                  className={`card ${isActive ? "active" : "side"}`}
-                  onClick={() => handleVideoClick(index)}
+                  key={i}
+                  className={`dot ${i === active ? "active" : ""}`}
+                  onClick={() => handleDotClick(i)}
                 >
-                  <video
-                    ref={(el) => (videoRefs.current[index] = el)}
-                    src={video}
-                    muted
-                    loop
-                  />
+                  {i === active && playing && <div className="progress" />}
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
+            <div className="control-buttons">
+              <button onClick={togglePlay} className="circle-btn">
+                {playing ? "❚❚" : "▶"}
+              </button>
+
+              <button onClick={toggleMute} className="circle-btn">
+                {isMuted ? "🔇" : "🔊"}
+              </button>
+            </div>
+
           </div>
-        </div>
-
-        {/* CONTROLS */}
-        <div className="controls">
-
-          {/* DOTS */}
-          <div className="dots">
-            {videos.map((_, i) => (
-              <div
-                key={i}
-                className={`dot ${i === active ? "active" : ""}`}
-                onClick={() => handleDotClick(i)}
-              >
-                {i === active && playing && <div className="progress" />}
-              </div>
-            ))}
-          </div>
-
-          {/* PLAY / PAUSE */}
-          <button onClick={togglePlay} className="circle-btn">
-            {playing ? "❚❚" : "▶"}
-          </button>
 
         </div>
       </div>
